@@ -1,0 +1,453 @@
+﻿<Lay:LayWindow
+    x:Class="智_能寝室的设计与实现.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Lay="clr-namespace:LayUI.Wpf.Controls;assembly=LayUI.Wpf"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1000"
+    Height="650"
+    Icon="\Materia\image\1.jpg"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="1.5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Lay:LayTabControl
+            Grid.Column="0"
+            Panel.ZIndex="100"
+            Style="{StaticResource LayTabControlStyle}"
+            TabStripPlacement="Left">
+            <Lay:LayTabItem Header="菜单" />
+            <Lay:LayTabItem Header="智能调节">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Content="当前模式：" FontWeight="Bold" />
+                    <Lay:LayRadioButton Content="开启" Style="{StaticResource LayRadioButtonStyle}"   IsChecked="True"/>
+                </StackPanel>
+            </Lay:LayTabItem>
+            <Lay:LayTabItem Header="安全模式">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Label Content="当前人数：" FontWeight="Bold" />
+                    <Label Content="{Binding Personcount}" FontWeight="Bold" />
+                </StackPanel>
+            </Lay:LayTabItem>
+            <Lay:LayTabItem Header="智能检测">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="1"
+                            Canvas.Left="84"
+                            Width="auto"
+                            Height="auto"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Source="\Materia\image\2.jpg" />
+                        <Label
+                            Grid.Row="1"
+                            Canvas.Left="382"
+                            Canvas.Top="50"
+                            Width="306"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="{Binding yanwu}"
+                            FontSize="20"
+                            FontWeight="Bold" />
+                    </Grid>
+
+                </Grid>
+            </Lay:LayTabItem>
+            <Lay:LayTabItem Header="反       馈">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" x:Name="load"  Visibility="Hidden" Background="White" HorizontalAlignment="Center">
+                        <b:Interaction.Triggers>
+                            <b:EventTrigger EventName="Loaded">
+                                <b:InvokeCommandAction Command="{Binding loadd}" CommandParameter="{Binding ElementName=load}"/>
+                            </b:EventTrigger>
+                        </b:Interaction.Triggers>
+                        <Grid.Resources>
+                            <Style x:Key="rec" TargetType="Rectangle">
+                                <Setter Property="Width" Value="10"/>
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="Fill" Value="#f1404b"/>
+                            </Style>
+                            <PowerEase x:Key="powerEase" Power="3" EasingMode="EaseInOut"/>
+                        </Grid.Resources>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" Storyboard.TargetProperty="Height">
+                                        <DoubleAnimation Storyboard.TargetName="rec1" To="50" BeginTime="0:0:0.0" Duration="0:0:0.5" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                        <DoubleAnimation Storyboard.TargetName="rec2" To="50" BeginTime="0:0:0.2" Duration="0:0:0.5" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                        <DoubleAnimation Storyboard.TargetName="rec3" To="50" BeginTime="0:0:0.4" Duration="0:0:0.5" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                        <DoubleAnimation Storyboard.TargetName="rec4" To="50" BeginTime="0:0:0.6" Duration="0:0:0.5" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                        <DoubleAnimation Storyboard.TargetName="rec5" To="50" BeginTime="0:0:0.8" Duration="0:0:0.5" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="15"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Loading"
+           FontSize="18"
+           FontFamily="Times New Roman"
+           Foreground="#252c41"
+           FontWeight="Bold"
+           Grid.ColumnSpan="5"
+           VerticalContentAlignment="Center"
+           HorizontalContentAlignment="Center"
+           Margin="0,80,0,0"/>
+                        <Rectangle Name="rec1" Grid.Column="0" Style="{StaticResource rec}"/>
+                        <Rectangle Name="rec2" Grid.Column="1" Style="{StaticResource rec}"/>
+                        <Rectangle Name="rec3" Grid.Column="2" Style="{StaticResource rec}"/>
+                        <Rectangle Name="rec4" Grid.Column="3" Style="{StaticResource rec}"/>
+                        <Rectangle Name="rec5" Grid.Column="4" Style="{StaticResource rec}"/>
+                    </Grid>
+
+                    <TabControl x:Name="youjian" Grid.Row="1">
+                        <b:Interaction.Triggers>
+                            <b:EventTrigger EventName="Loaded">
+                                <b:InvokeCommandAction Command="{Binding yx}" CommandParameter="{Binding ElementName=youjian}"/>
+                            </b:EventTrigger>
+                        </b:Interaction.Triggers>
+                        <TabItem  Header="新邮件">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <Label
+                            Margin="5,0,0,0"
+                            VerticalContentAlignment="Center"
+                            Content="收件人" />
+                                    <Label Margin="10,0,0,0">
+                                        <Border
+                                Width="700"
+                                BorderBrush="#D3DAF8"
+                                BorderThickness="1,1,1,1"
+                                CornerRadius="5">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label  BorderThickness="0" VerticalAlignment="Center" Foreground="Black" Content="●●●●●"  />
+                                                <Label Content="0882@qq.com" />
+                                            </StackPanel>
+                                        </Border>
+                                    </Label>
+                                </StackPanel>
+
+
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <Label
+                            Margin="10,0,0,0"
+                            VerticalContentAlignment="Center"
+                            Content="主题" />
+                                    <Label Margin="10,0,0,0">
+                                        <Border
+                                Width="700"
+                                Margin="7,0,0,0"
+                                BorderBrush="#D3DAF8"
+                                BorderThickness="1,1,1,1"
+                                CornerRadius="5">
+                                            <TextBox
+                                    Name="zhuti"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0" />
+                                        </Border>
+                                    </Label>
+                                </StackPanel>
+                                <StackPanel
+                        Grid.Row="2"
+                        Margin="60,0,0,0"
+                        Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                Height="20"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" />
+                                        <Label
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Content="添加附件"
+                                Cursor="Hand"
+                                FontSize="10"
+                                Foreground="#ce8a3d">
+                                            <b:Interaction.Triggers>
+                                                <b:EventTrigger EventName="MouseDown">
+                                                    <b:InvokeCommandAction Command="{Binding openfile}" />
+                                                </b:EventTrigger>
+                                            </b:Interaction.Triggers>
+                                        </Label>
+                                    </StackPanel>
+
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                Height="30"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" />
+                                        <Label
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Content="超大附件"
+                                Cursor="Hand"
+                                FontSize="10"
+                                Foreground="#ce8a3d">
+                                            <b:Interaction.Triggers>
+                                                <b:EventTrigger EventName="MouseDown">
+                                                    <b:InvokeCommandAction Command="{Binding openfile}" />
+                                                </b:EventTrigger>
+                                            </b:Interaction.Triggers>
+                                        </Label>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                Height="25"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" />
+                                        <Label
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Content="文档"
+                                Cursor="Hand"
+                                FontSize="10"
+                                Foreground="#ce8a3d">
+                                            <b:Interaction.Triggers>
+                                                <b:EventTrigger EventName="MouseDown">
+                                                    <b:InvokeCommandAction Command="{Binding openfile}" />
+                                                </b:EventTrigger>
+                                            </b:Interaction.Triggers>
+                                        </Label>
+                                    </StackPanel>
+
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                Height="18"
+                                Margin="5"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" />
+                                        <Label
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Content="图片"
+                                Cursor="Hand"
+                                FontSize="10"
+                                Foreground="#ce8a3d">
+                                            <b:Interaction.Triggers>
+                                                <b:EventTrigger EventName="MouseDown">
+                                                    <b:InvokeCommandAction Command="{Binding openfile}" />
+                                                </b:EventTrigger>
+                                            </b:Interaction.Triggers>
+                                        </Label>
+                                    </StackPanel>
+
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                Height="30"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" />
+                                        <Label
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Content="字体设置"
+                                Cursor="Hand"
+                                FontSize="10"
+                                Foreground="#ce8a3d">
+                                            <b:Interaction.Triggers>
+                                                <b:EventTrigger EventName="MouseDown">
+                                                    <b:InvokeCommandAction Command="{Binding coloropen}" CommandParameter="{Binding ElementName=wenben}" />
+                                                </b:EventTrigger>
+                                            </b:Interaction.Triggers>
+                                        </Label>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                Height="25"
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" />
+                                        <Label
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Content="颜色方案"
+                                Cursor="Hand"
+                                FontSize="10"
+                                Foreground="#ce8a3d">
+                                            <b:Interaction.Triggers>
+                                                <b:EventTrigger EventName="MouseDown">
+                                                    <b:InvokeCommandAction Command="{Binding opencolor}" CommandParameter="{Binding ElementName=wenben}" />
+                                                </b:EventTrigger>
+                                            </b:Interaction.Triggers>
+                                        </Label>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                        <Label Content=" 文件数量" />
+                                        <Label Content="{Binding MyProperty}" />
+                                    </StackPanel>
+
+
+                                </StackPanel>
+
+
+
+                                <StackPanel
+                        Grid.Row="4"
+                        Height="400"
+                        Orientation="Horizontal">
+                                    <Label Content="正文" FontSize="20" />
+                                    <Lay:LayTextBox 
+                            Name="wenben"
+                            Width="auto"
+                                        Height="auto"
+                            BorderBrush="#D3DAF8"
+                            BorderThickness="1"
+                            FontSize="20" 
+                            TextWrapping="Wrap" >
+                                        <b:Interaction.Triggers>
+                                            <b:EventTrigger EventName="SelectionChanged">
+                                                <b:InvokeCommandAction Command="{Binding wenbenchushihua }" CommandParameter="{Binding ElementName=wenben}" />
+                                            </b:EventTrigger>
+                                        </b:Interaction.Triggers>
+                                    </Lay:LayTextBox>
+                                </StackPanel>
+
+                                <Button
+                        Grid.Row="5"
+                        Margin="0,10,10,0"
+                        HorizontalAlignment="Right"
+                        Command="{Binding send}"
+                        CommandParameter="{Binding ElementName=zhuti}"
+                        Content="发送" />
+                            </Grid>
+
+
+                        </TabItem>
+                        <!--<TabItem Header="TabItem">
+                <local:readbook/>
+            </TabItem>
+                <TabItem Header="TabItem">
+                <local:AddBooks/>
+            </TabItem>-->
+                    </TabControl>
+
+
+                </Grid>
+            </Lay:LayTabItem>
+            <Lay:LayTabItem Header="自定功能">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="1"
+                            Canvas.Left="84"
+                            Width="auto"
+                            Height="auto"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Source="\Materia\image\3.jpg" />
+                        <Label
+                            Grid.Row="1"
+                            Canvas.Left="382"
+                            Canvas.Top="50"
+                            Width="306"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Content="{Binding yanwu}"
+                            FontSize="20"
+                            FontWeight="Bold" />
+                    </Grid>
+
+                </Grid>
+            </Lay:LayTabItem>
+            <Lay:LayTabItem Header="列表权限">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseMove">
+                        <b:InvokeCommandAction Command="{Binding chuancandg}" CommandParameter="{Binding ElementName=datagrid}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+
+                <Lay:LayDataGrid
+                    Name="datagrid"
+                    Margin="2"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    ItemsSource="{Binding Datagriddata}">
+                    <Lay:LayDataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding a1}" Header="用户名称" />
+                        <DataGridTextColumn Binding="{Binding a2}" Header="登入时间" />
+                        <DataGridTextColumn Binding="{Binding a4}" Header="权限等级" />
+                        <DataGridTemplateColumn Header="修改">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Lay:LayButton Content="{Binding a3}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </Lay:LayDataGrid.Columns>
+                </Lay:LayDataGrid>
+            </Lay:LayTabItem>
+        </Lay:LayTabControl>
+
+    </Grid>
+</Lay:LayWindow>

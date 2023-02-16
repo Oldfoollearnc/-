@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="智_能寝室的设计与实现.Data" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="user" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123456</Value>
+    </Setting>
+    <Setting Name="superuser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">superuser</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
