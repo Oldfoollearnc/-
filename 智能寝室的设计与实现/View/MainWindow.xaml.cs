@@ -27,12 +27,14 @@ namespace 智能寝室的设计与实现.View
            
         }
 
+        #region MyRegion
         //protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         //{
         //   if (e.LeftButton == MouseButtonState.Pressed)
         //    {
         //        this.DragMove();
         //    }
-        //}
+        //} 
+        #endregion
     }
 }

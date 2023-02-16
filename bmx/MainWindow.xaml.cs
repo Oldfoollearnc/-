@@ -23,6 +23,7 @@ namespace bmx
         public MainWindow()
         {
             InitializeComponent();
+            int s;
         }
     }
 }
