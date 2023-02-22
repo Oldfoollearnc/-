@@ -20,9 +20,7 @@
     mc:Ignorable="d">
 
     <Window.Resources>
-
         <convert:Commadparmet x:Key="CommandParameters" />
-
         <Style x:Key="mylable" TargetType="Label">
             <Setter Property="FontSize" Value="200" />
             <Setter Property="FontWeight" Value="Bold" />
@@ -55,24 +53,16 @@
                                 Height="2"
                                 Background="#d13d3a"
                                 BorderThickness="0,0,0,1" />
-
-
                         </Grid>
                     </ControlTemplate>
-
-
                 </Setter.Value>
-
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="FontWeight" Value="Bold" />
                 </Trigger>
-
             </Style.Triggers>
         </Style>
-
-
         <Style x:Key="myTextblock" TargetType="Label">
             <Setter Property="FontSize" Value="200" />
             <Setter Property="Template">
@@ -102,8 +92,6 @@
                                 Grid.Row="1"
                                 Width="30"
                                 BorderThickness="0,0,0,1" />
-
-
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -111,19 +99,14 @@
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-
-
                 </Setter.Value>
-
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="FontWeight" Value="Bold" />
                 </Trigger>
-
             </Style.Triggers>
         </Style>
-
         <FontFamily x:Key="iconfont">
             /Font/#iconfont
         </FontFamily>
@@ -173,7 +156,7 @@
 
         </Style>
     </Window.Resources>
-    <Grid Background="Transparent">
+    <Grid x:Name="grid" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="610" />
             <ColumnDefinition Width="610" />
@@ -200,13 +183,16 @@
                 <!--  主题菜单  -->
 
                 <Popup
+                    Name="popup1"
                     Grid.Row="0"
                     AllowsTransparency="True"
+                    HorizontalOffset="40"
                     IsOpen="{Binding ElementName=skin, Path=IsChecked}"
                     Placement="Center"
                     PlacementTarget="{Binding ElementName=skin}"
                     PopupAnimation="Fade"
-                    StaysOpen="False">
+                    StaysOpen="False"
+                    VerticalOffset="148">
                     <Border
                         Width="300"
                         Height="240"
@@ -418,11 +404,13 @@
                 <Popup
                     Grid.Row="0"
                     AllowsTransparency="True"
+                    HorizontalOffset="-50"
                     IsOpen="{Binding ElementName=note, Path=IsChecked}"
                     Placement="Center"
                     PlacementTarget="{Binding ElementName=note}"
                     PopupAnimation="Fade"
-                    StaysOpen="False">
+                    StaysOpen="False"
+                    VerticalOffset="280">
 
                     <Border
                         Width="300"
@@ -497,10 +485,12 @@
                                         FontFamily="{StaticResource iconfont}"
                                         FontSize="20"
                                         Foreground="White"
+                                        MouseLeave="Border_MouseLeave"
                                         Style="{StaticResource Mytogglebutton}">
 
 
                                         <TextBlock
+                                            x:Name="kongjian"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             FontFamily="{StaticResource iconfont}"
